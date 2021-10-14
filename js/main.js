@@ -8,7 +8,7 @@ const matchList = document.getElementById('match-list')
 
 // Create a function to search the JSON and filter it
 const searchCodes = async (searchText) => {
-  const res = await fetch('../codes.json')
+  const res = await fetch('https://istoc42.github.io/snomed-api/codes.json')
   const snomeds = await res.json()
 
   // Get matches to current text input
