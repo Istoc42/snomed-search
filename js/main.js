@@ -40,6 +40,8 @@ const outputHtml = (matches) => {
       .join('')
 
     matchList.innerHTML = html
+  } else if (matches.length === 0) {
+    matchList.innerHTML = ''
   }
 }
 
