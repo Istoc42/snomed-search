@@ -32,8 +32,8 @@ const outputHtml = (matches) => {
       .map(
         (match) => `
       <div class="card card-body mb-1 result">
-        <span id="${match.code}" class="fs-2 copy" style="cursor: pointer; color: white;">${match.code}</span>
-        <span id="${match.name}" class="copy" style="cursor: pointer;">${match.name}</span>
+        <span id="${match.code}" class="fs-2 mb-2 p-0 copy" style="cursor: copy; color: white; padding: 0;">${match.code}</span>
+        <span id="${match.name}" class="copy " style="cursor: copy;">${match.name}</span>
       </div>
     `
       )
@@ -56,11 +56,19 @@ function detectInnerText() {
     if (clickTarget.classList.contains('copy')) {
       let result = clickTarget.id
       navigator.clipboard.writeText(result)
+      copied()
+      function copied() {
+        let copiedText = clickTarget.innerText
+        clickTarget.innerText = 'Copied!'
+        console.log(copiedText)
+        // Set timeout
+
+        // Change back to original value
+      }
+
       console.log('"' + result + '"' + ' was copied to clipboard')
     }
   })
 }
 
 detectInnerText()
-
-function copyResultToClipboard() {}
