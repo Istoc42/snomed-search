@@ -31,9 +31,9 @@ const outputHtml = (matches) => {
     const html = matches
       .map(
         (match) => `
-      <div class="card card-body mb-1">
-        <h4>${match.code}</h4>
-        <small>${match.name}</small>
+      <div class="card card-body mb-1 result">
+        <span id="${match.code}" class="fs-2 copy" style="cursor: pointer; color: white;">${match.code}</span>
+        <span id="${match.name}" class="copy" style="cursor: pointer;">${match.name}</span>
       </div>
     `
       )
@@ -47,3 +47,20 @@ const outputHtml = (matches) => {
 
 // Detect input in the search bar
 search.addEventListener('input', () => searchCodes(search.value))
+
+// Reads the innerText of element that was clicked and logs it in the console
+function detectInnerText() {
+  document.addEventListener('click', (e) => {
+    var clickTarget = e.target
+
+    if (clickTarget.classList.contains('copy')) {
+      let result = clickTarget.id
+      navigator.clipboard.writeText(result)
+      console.log('"' + result + '"' + ' was copied to clipboard')
+    }
+  })
+}
+
+detectInnerText()
+
+function copyResultToClipboard() {}
