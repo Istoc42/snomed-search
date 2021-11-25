@@ -56,15 +56,13 @@ function detectInnerText() {
     if (clickTarget.classList.contains('copy')) {
       let result = clickTarget.id
       navigator.clipboard.writeText(result)
-      copied()
-      function copied() {
-        let copiedText = clickTarget.innerText
-        clickTarget.innerText = 'Copied!'
-        console.log(copiedText)
-        // Set timeout
-
-        // Change back to original value
-      }
+      let copiedText = clickTarget.innerText
+      clickTarget.innerText = 'Copied!'
+      console.log(copiedText)
+      // Set timeout
+      setTimeout(() => {
+        clickTarget.innerText = copiedText
+      }, 1500)
 
       console.log('"' + result + '"' + ' was copied to clipboard')
     }
