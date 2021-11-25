@@ -1,5 +1,3 @@
-// Grab DOM elements
-
 // Get search bar
 const search = document.getElementById('search')
 
@@ -48,18 +46,19 @@ const outputHtml = (matches) => {
 // Detect input in the search bar
 search.addEventListener('input', () => searchCodes(search.value))
 
-// Reads the innerText of element that was clicked and logs it in the console
-function detectInnerText() {
+// Reads the innerText of element that was clicked and copies to clipboard
+function copyInnerText() {
   document.addEventListener('click', (e) => {
     var clickTarget = e.target
 
     if (clickTarget.classList.contains('copy')) {
       let result = clickTarget.id
       navigator.clipboard.writeText(result)
+      // Variable to store the code that was copied
       let copiedText = clickTarget.innerText
+      // Changes SNOMED code to 'Copied!' when clicked
       clickTarget.innerText = 'Copied!'
-      console.log(copiedText)
-      // Set timeout
+      // Set timeout to change the inner text back to the stored value
       setTimeout(() => {
         clickTarget.innerText = copiedText
       }, 1500)
@@ -69,4 +68,4 @@ function detectInnerText() {
   })
 }
 
-detectInnerText()
+copyInnerText()
